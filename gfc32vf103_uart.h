@@ -13,7 +13,8 @@
 
 #include <stdio.h>
 #include <inttypes.h>
-#include "gd32vf103.h"
+#include <gd32vf103.h>
+#include <gd32vf103_usart.h>
 
 /**
  * @brief Settings for the serial port
