@@ -72,50 +72,19 @@ typedef struct {
 }BUF_UART_t;
 
 /**
- * @brief UART receive interrupt event
+ * @brief UART interrupt event
  * 
- * Call this function from your ISR Interrupt function when a character has been received.
+ * Call this function from your ISR Interrupt function.
+ * Internally it checks and processes the USART_INT_FLAG_RBNE and USART_INT_FLAG_TBE.
  * Example: \n \code{.c}
  * void USART1_IRQHandler(void)
  * {
- *     // Check if the receive interrupt flag of USART1 has been triggered
- *     if (usart_interrupt_flag_get(usart1Hnd.hw_usart, USART_INT_FLAG_RBNE))
- *     {
- *         uart_receive_interrupt(&usart1Hnd);
- *     }
- * 	   // Check if the transmit interrupt flag of USART1 has been triggered
- *     if (usart_interrupt_flag_get(usart1Hnd.hw_usart, USART_INT_FLAG_TBE))
- *     {
- *         uart_transmit_interrupt(&usart1Hnd);
- *     }
+ *     uart_interrupt(&usart1Hnd);
  * }
  * \endcode
  * @param uartPtr	Pointer to the initialised \a BUF_UART_t instance
  */
-void uart_receive_interrupt(BUF_UART_t *uartPtr);
-
-/**
- * @brief UART receive interrupt event
- * 
- * Call this function from your ISR Interrupt function when a character has been received.
- * Example: \n \code{.c}
- * void USART1_IRQHandler(void)
- * {
- *     // Check if the receive interrupt flag of USART1 has been triggered
- *     if (usart_interrupt_flag_get(usart1Hnd.hw_usart, USART_INT_FLAG_RBNE))
- *     {
- *         uart_receive_interrupt(&usart1Hnd);
- *     }
- * 	   // Check if the transmit interrupt flag of USART1 has been triggered
- *     if (usart_interrupt_flag_get(usart1Hnd.hw_usart, USART_INT_FLAG_TBE))
- *     {
- *         uart_transmit_interrupt(&usart1Hnd);
- *     }
- * }
- * \endcode
- * @param uartPtr	Pointer to the initialised \a BUF_UART_t instance
- */
-void uart_transmit_interrupt(BUF_UART_t *uartPtr);
+void uart_interrupt(BUF_UART_t *uartPtr);
 
 /**
  * @brief Initialise the serial port

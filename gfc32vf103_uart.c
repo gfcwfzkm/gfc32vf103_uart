@@ -24,7 +24,7 @@
 /**
  * @brief Interrupt-Empfangsfunktion (Interrupt Service Routine)
  */
-void uart_receive_interrupt(BUF_UART_t *uartPtr)
+static void uart_receive_interrupt(BUF_UART_t *uartPtr)
 {
 	uint8_t tmphead,data,lastRxError = 0;
 		
@@ -67,7 +67,7 @@ void uart_receive_interrupt(BUF_UART_t *uartPtr)
 /**
  * @brief Interrupt-Sendefunktion (Interrupt Service Routine)
  */
-void uart_transmit_interrupt(BUF_UART_t *uartPtr)
+static void uart_transmit_interrupt(BUF_UART_t *uartPtr)
 {
 	uint8_t tmptail;
 		
@@ -88,6 +88,18 @@ void uart_transmit_interrupt(BUF_UART_t *uartPtr)
 		/* Tx Buffer leer, Sendeinterrupt deaktivieren */
 		_UART_IRQ_TX_DIS(uartPtr->hw_usart);
 	}
+}
+
+void uart_interrupt(BUF_UART_t *uartPtr)
+{
+	if (usart_interrupt_flag_get(uartPtr->hw_usart, USART_INT_FLAG_RBNE))
+    {
+        uart_receive_interrupt(uartPtr);
+    }
+    if (usart_interrupt_flag_get(uartPtr->hw_usart, USART_INT_FLAG_TBE))
+    {
+        uart_transmit_interrupt(uartPtr);
+    }
 }
 
 void uart_init(BUF_UART_t *uartPtr, uint32_t _usart, uint32_t uartBaudRate, enum UART_SETTING _setting, uint8_t *recivBuf,  const uint8_t recivBufLen, uint8_t *transBuf, const uint8_t transBufLen)
