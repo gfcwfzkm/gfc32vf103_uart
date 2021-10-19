@@ -1,5 +1,5 @@
 /* UART FIFO LIBRARY
- *
+ * 
  * Basic FIFO UART library ported to the RISC-V GD32V microcontroller family
  * uart.h
  * Version 1

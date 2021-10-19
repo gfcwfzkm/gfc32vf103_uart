@@ -3,11 +3,12 @@
  * This example shows the basic usage of the FIFO serial library for
  * the GD32V RISC-V microcontrollers. This demo uses the USART 1 peripheral
  * at PortA pin 2 (tx) and 3 (rx)
+ * 
  */
 
 #include "gd32vf103.h"
 #include "gfc32vf103_uart.h"	// Include library
-
+ 
 /* USART pins */
 #define	MCU_TX	BIT(2)
 #define MCU_RX	BIT(3)

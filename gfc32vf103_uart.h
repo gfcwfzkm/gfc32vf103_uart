@@ -18,7 +18,7 @@
 
 /**
  * @brief Settings for the serial port
- *
+ * 
  * The first number stands for the bit width (currently only default 8-bit supported),
  * the letter for either no parity bit (N), even parity bit (E) or odd parity bit (O),
  * and the final number defines the amount of stop bits used
@@ -33,7 +33,7 @@ enum UART_SETTING {
 	SERIAL_8O2 = 5
 };
 
-/**
+/** 
  * @brief Error return values / status of the uart receiver
  */
 typedef enum {
